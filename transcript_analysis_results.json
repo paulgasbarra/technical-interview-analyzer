@@ -1,0 +1,39 @@
+{
+  "scores": {
+    "Asks clarifying questions and incorporates hints": 3,
+    "Verifies assumptions": 4,
+    "Demonstrates understanding w/ example inputs & outputs": 4,
+    "Identifies multiple high-level approaches": 3,
+    "Determines time & space complexity of each high-level approach": 3,
+    "Selects appropriate data structure(s) and/or programming approach": 4,
+    "Writes valid, concise, easy to read, and syntactically correct code for the full algorithm": 2,
+    "Uses proper indentation to make code readable": "N/A",
+    "Selects descriptive names for variables/functions that follow standard casing conventions": "N/A",
+    "Manually tests code by verifying output for sample inputs": 4,
+    "Able to track down bugs effectively without resorting to \u201cguessing\u201d what is wrong": 1,
+    "Solution handles edge cases": 2,
+    "Verbalizes thought process throughout": 2,
+    "Uses sufficient vocal volume": "N/A",
+    "Maintains positive tone and body language throughout": "N/A",
+    "Utilizes all available whiteboard space, or includes ample comments if coding remotely": "N/A"
+  },
+  "assessment_details": {
+    "Asks clarifying questions and incorporates hints": "Proficient: Asks clarifying questions and/or incorporates hints.",
+    "Verifies assumptions": "Exceptional: Thoroughly verifies multiple assumptions and constraints.",
+    "Demonstrates understanding w/ example inputs & outputs": "Exceptional: Provides multiple clear and insightful examples.",
+    "Identifies multiple high-level approaches": "Proficient: Identifies and mentions more than one high-level approach.",
+    "Determines time & space complexity of each high-level approach": "Proficient: Determines time and space complexity for at least one approach.",
+    "Selects appropriate data structure(s) and/or programming approach": "Exceptional: Selects and justifies appropriate data structures and/or approaches with clear reasoning.",
+    "Writes valid, concise, easy to read, and syntactically correct code for the full algorithm": "Developing: Attempts to describe code logic but may be unclear, incomplete or lack structure.",
+    "Uses proper indentation to make code readable": "N/A: Cannot be assessed from transcript without code.",
+    "Selects descriptive names for variables/functions that follow standard casing conventions": "N/A: Cannot be assessed from transcript unless variable/function names are mentioned.",
+    "Manually tests code by verifying output for sample inputs": "Exceptional: Thoroughly tests code with multiple sample inputs and verifies outputs.",
+    "Able to track down bugs effectively without resorting to \u201cguessing\u201d what is wrong": "Not Demonstrated: Limited or ineffective debugging, or resorts to guessing.",
+    "Solution handles edge cases": "Developing: Mentions edge cases but handling might be incomplete or unclear.",
+    "Verbalizes thought process throughout": "Developing: Sometimes verbalizes thought process, but may be inconsistent or brief.",
+    "Uses sufficient vocal volume": "N/A: Cannot be assessed from text transcript.",
+    "Maintains positive tone and body language throughout": "N/A: Body language and tone (reliably) cannot be assessed from text transcript.",
+    "Utilizes all available whiteboard space, or includes ample comments if coding remotely": "N/A: Cannot be assessed from transcript unless explicitly mentioned."
+  },
+  "pass_fail": "Fail"
+}

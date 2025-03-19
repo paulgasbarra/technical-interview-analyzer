@@ -1,0 +1,250 @@
+
+Okay. So we are recording. Alright. Again, good morning, Antonio. So today, we are going to do a technical interview.
+
+We're gonna do a couple intros, and then we'll I'll give you a coding challenge via Replit. And if you could share your screen, that would be great. And then from there, we'll just, you know, work through the problem. Sound good? Sounds perfect.
+
+Great. Excellent. Okay. So, Antonio, tell me about yourself. Yeah.
+
+So, I'm a full stack software developer. Very passionate about problem solving. I consider myself to be, very committed when it comes to making sure that any project I work on meets the highest possible standard. I've developed a few projects using, like, front end technologies like JavaScript, HTML, React, among others, back end technologies like Node. Js, Express, PostgreSQL, and others.
+
+On a more personal note, I'm a parent I'm a father of two beautiful girls. I'm a photography hobbyist, and I write blogs about things I learned and and my coding journey in general. Okay. I am going to invite you. No.
+
+I'm not going to invite you. Hold on. Okay. So, you should have the prompt, and we'll go into the read me. And you can look that over, and we'll go from there.
+
+Alright. Cool. So let's see. Integer disassembly. Write a program that prints out a breakdown of an integer into a sum of numbers that have just one nonzero digit.
+
+For example, given four three zero one eight, it should print, 40,000, three thousand, 10, eight. Okay. Sample input and outputs. Example one. 43,018.
+
+So it's forty thousand three thousand ten eight. Alright. Let integer 123, one hundred 20 and three. Alright. So, basically, what I understand from the problem is that we need to break it down into, their place value.
+
+So, basically, this is the one ten hundred, and thousand. Okay. Alright. Okay. Is there a a a limit of of how many digits in this number?
+
+I mean, let's just say it could be nine to 10 digits long. Nine to 10 digits long. Okay. Alright. So I'm gonna take this example for now.
+
+Let's see. Okay. So let's see. So, what else can I ask? It's it will always be a number greater than zero.
+
+No. It it might be a negative number. Oh, it might it might be a negative number. So if it's a number I feel like right now, let's solve let's solve for, just a positive number, and then we can go back and and check Oh, okay. Negative number.
+
+Alright. Cool. So, so I need I think, we need to okay. Sorry. One last question.
+
+The output should be a string. Right? So I'm getting an an an integer as the Yes. And then the output should be a string, and it should it should have, like, the plus signs. Yes.
+
+Okay. Perfect. Alright. So so I believe I should find a way to let's see. So maybe I can Alright.
+
+So I maybe I can convert this. Wait. I can convert it into a string. Let's see what I can do with this. So I need I definitely think I need to loop from the, most important digit to the least important, meaning, like, going from right to left.
+
+Okay. So let's see. So we have so it's 10 digits. Move on. So let's see.
+
+One, two, three. K. So wait. See here. 1, 2, 3, 4, 5, 6, 7, 8, 9, more here.
+
+So this is the highest possible length of the number, let's say. Right? So we would have then one, a tenth, a hundred, a thousand. Right. So so I I'm thinking I need to identify, like, as I move to the left, so I will I can have, like, basic values.
+
+So I have a one, a 10, a hundred. And as I can as I go so this would be I can get this, and then I can multiply this by the current value place value. So here, if I multiply this by one, I get one. So here, I get 20. And then here, I get, 7 hundred if I multiply by a hundred.
+
+And then here, I get 3,000. Okay. So I get 3,000, but now I need to get 50,000 here. Right. Let's see.
+
+53. So I would need to get 50,000 here. So what would I how can I So I have a a thousand? Right? So I have three thou so I have, one ten hundred thousand.
+
+Like, I don't know if there's a better way, but maybe have, like, a 10,000. Hundred thousand, but that's I don't feel. Okay. So how can I get the 50,000 here? 10,000, one hundred thousand, one million, billion, 10,000,000,000, 100.
+
+Let's see. So as I move see. Okay. So let's say that I have an array. So I I would I would think I have an array.
+
+As I go, I move my pointer to the next element. So let's say that I have one, ten, hundred, and then I have the thousand place. Is I'm I'm trying to think if there's a way, I'm trying to think of a way I can do this without having to have, like, all the of, like, 10,000. Okay. And then hundred thousand and then +1, 23.
+
+Sure. +1, 23000000. And then I would have, you know, +1, 23. 1, 2, 3. This is correct.
+
+100. Let's see. +1, 23. 1, 2, 3. Okay.
+
+So 1. So this is kind of a brute force approach? Yeah. Yeah. So I'm trying to think, right now if, how could I do this without having to go with this brute force approach?
+
+Right. Well, let's let's just try a smaller number here. You know, if we add 301. Right? Yeah.
+
+You need, you need 300, and then you don't need anything for the tens place, and you need one. So if we did another number, right, we need 4,000 plus 3,000, 3 hundred plus 50 plus one. So what do we what do we need to add to every number to every part of this number. Yeah. So we need to add zeros.
+
+Okay. Yeah. Okay. So we know we need to add zeros. So how can we determine How many zeros to add?
+
+Zeros to add. Yeah. Okay. So let's see. If we have three, two, one Okay.
+
+Four. Okay. Alright. So the length is four. So that's maybe that's the biggest amount of zeros that we we can add.
+
+Okay. So okay, so one, we don't add any. Right? So here okay. So let's say yeah.
+
+Maybe the index can tell me, the amount of zeros that I need to add. Okay. Alright. So index zero, index, one, index two, index three. Alright.
+
+Yeah. So I guess, as I move, the index can tell me. So index zero, so I don't add any zero. Index one, so I add one zero. Index two, so I add two zeros.
+
+Okay. So you're moving backwards through the array? Now I'm thinking, let's see. Yeah. I I could, reverse it.
+
+I was I was moving in the example backwards, but I was thinking forward. Okay. Okay. So okay. So, yeah.
+
+Okay. So I can just move I I don't need to reverse it, I guess. Starting I I can have a a starting point, and maybe I can go decreasing the number and add the zeros according to that also. Okay. Move from left to right.
+
+So let's see. Alright. So let's say that we have function disassemble this number. Alright. Alright.
+
+So this would be the function. It takes a number, and then we are gonna create a few test cases. So that one. Alright. And maybe we have 300.
+
+Let's do expects, and then let's do expects. So here we should have 300 plus oh, that's it. 300. Okay. Okay.
+
+Alright. So as long as it's not a zero Mhmm. Then I can add. Okay. Alright.
+
+300. Okay. So what if what if we have 306? So we should expect 300 plus six. Right?
+
+So if it's a number greater than zero, I can probably add I can add the zeros. If it's a zero, I don't do anything. And then if it's a number, then then, like oh, if I don't add, but I probably should decrease the if I have a counter or something. Alright. And then let's see.
+
+We'll have 10. That's 10. So it should expect 10. Course. You should expect so here you you I should ex you should expect 10 if it's just a 10.
+
+Yeah. Okay. Okay. So here is a no. No.
+
+This length is two. Okay. So I guess I could handle this if it's, 20. Okay. So what if it's if this 20, I should just return I I should get like, if it's this, I should return just the 20.
+
+Right? Yeah. Okay. Update. So okay.
+
+If it's a two if it's three, I get the 300. Oh, okay. Yeah. Because I would multiply this. I would, add the zero, and then when I come here, it yeah.
+
+Okay. So the algorithm would take care of that. Okay. So, alright. So what I'm thinking is, define, a variable define the variable for to to hold, like, a it's not a counter, but I'll just name it counter for now.
+
+For amount of zeros to add. Right? And then this will be equal to the length of the number. Then I can loop from left to right, left to right. And then in my loop, I can if if the current number is okay.
+
+I'm go I'm also gonna need a result. So let's do call it answer, which is going to be the string that I'm going to be building. So from left to right, and then, as I move from left to right, if if if the current number is greater than zero, so check if num current num is greater is different to zero. It's different. Two zero.
+
+Zero. Right? And then we say, yes. Then we So we can use, yeah. So I think we can, then add current number plus, amount zeros Okay.
+
+To answer and then n plus sign. N space n plus sign. Plus sign. Then, no, I can oh, I can I should also decrease? I think I'm gonna be decreasing in both cases, so I I can do this regardless.
+
+No. Okay. So if no. I'm not doing anything. I'm just okay.
+
+So I can just decrease counter or amounts of both. Zero. Zeros to add. And to add the zero, there's a string method. I think it's repeat.
+
+And then I I can use the zero for that. And then, alright, then return answer at the end. So I define my how many zeros is the maximum amount that can be added. I Okay. I define my answer that will be, an empty string.
+
+Then I loop from left to right. So as I go, I check the current number. If it's different to zero, then I can, I can add the current number to my answer, and then I can also add, the amount of zeros that are here in the current variable? I don't have to do anything. If if if it's not a zero, then it will nothing will happen, and then I I decrease the number of zeros, as I go regardless whether it is a number or not, and then I return the answer at the end.
+
+Okay. How how are you going to define the zeros to add? Yeah. So here, I would, convert the number into a string and get the length from from that. Okay.
+
+And then how are you going to add the numb the zeros to the number? Yeah. So, I would use the, repeat method, the string. Okay. Alright.
+
+So let's see. So we can say let zeros equal string number and then dot length. And then I would say let answer equals an empty string. Then we would loop that I equals zero as long as I is less than okay. Initially, this is less than eight I plus plus.
+
+Okay. Let's do this. Almost. I mean, num equals this. Nice.
+
+So now I'm gonna check if string num. So this is a string num. Right? So it's different. String num bracket I is different to zero.
+
+String num is different to zero. Then I can say as okay. As plus equals this current number. And then Repeat. Okay.
+
+So I think it would have to be okay, zero equals this. Okay. Let zeros equals dot three p. So we have we have the current number, and then we need this zeros and then the space and the plus, here. Oh, okay.
+
+Alright. Then here we are going to and then this one to minus and then re return. Okay. So we convert the number to a string. Mhmm.
+
+So we grab the length to say the initial amount of zeros for the first number. We have defined our answer, which is a string. We loop through the, string number. And then if the current digit is different to a zero, we are going to, we're gonna save this amount of zeros here, and, and then we're going to add it to the answer. So we have the number, the amount of zeros, and the spaces, and the plus sign.
+
+Whenever it comes to a zero, it's not gonna come in here, but it's still going to decrease, by one. Okay. So in the a couple things. Mhmm. So the length of the string is, let's say, for the first one, three.
+
+And so you set zeros to add to three, and then you get the first index, which is also happens to be three. Yeah. I think I have to, yep. This probably should be minus one. Okay.
+
+Yeah. Because I don't want to add four zeros. I wanna add minus one. You know? So here's if the length is four, my initial amount of zero should be three.
+
+Okay. Yeah. Alright. So I'm just gonna I'm just gonna run it, to see what we get from here. Let's say that we have three let's do this 56.
+
+So it should get plus 50 plus six. Alright. Okay. Alright. So I get $359.06 300 Oasis.
+
+3 hundred. Worst of 600. Okay. Alright. Yeah.
+
+So this is a good this is a good case for putting brackets on our four loops. Wait a minute. What happened here? Right. Because if you don't put a bracket, what gets resolved?
+
+Yeah. I don't know. I missed that. Okay. But you that you still need to pull in your zeros to add.
+
+Right? One second. This the the adjustment on 34. Yes. Yes.
+
+Yes. Right here. Okay. And we're and we're running close to time. We got about five or six minutes.
+
+So, alright. That looks better. But what's going on with this plus sign? Okay. So maybe I can put it up.
+
+Yeah. Oh, I got the extra plus sign. Okay. I'm adding it after. Should I add it before?
+
+So they know we have it at the beginning. Okay. I'm sorry. Alright. So for the first number, I would add it.
+
+Well, right now, the only thing I'm thinking is, like, have a different if statement for this. Okay. Yeah. What would that if statement be? Yeah.
+
+If if okay. So let's say that so I is if I is different to the last index, it's different. It's different to string dot length minus one. That is one. And then Okay.
+
+But for, like, a number like 300, you're you're still gonna add that plus sign. Right? Like, pretend you would still add the plus sign. You just would never you wouldn't do it at the end, I guess. Well So if if if if the loop is at the end Okay.
+
+Okay. It skips it if it's zero. Yeah. Alright. Alright.
+
+So if I is different to the length minus one, then we want to return the plus sign. Else, maybe an empty string. Okay. Alright. Alright.
+
+Let's check it out. Okay. So we need this space in time. Gonna have a little more space than you want. You're gonna have a little more space than you.
+
+You've already got a space in online 28. See how it goes two spaces. But, yeah, that 10. Yes. Yeah.
+
+But you can see it 10. It goes it basically it gives you 10 plus, and then it goes on to the next one because 10 is a number that would register at. All right. What about, what's another way to get, what's another way to to get something in between a bunch of, different values? Okay.
+
+Okay. Yeah. So I guess I so maybe I can just add the numbers and then split and join. Okay. Add them to what?
+
+No. I mean, convert the the answer into an array. Uh-huh. Like, split it. Uh-huh.
+
+And then join it by a plus sign. Okay. What are you gonna split on? On on nothing. So I would oh, wait.
+
+Wait. Uh-huh. Because you're making a big string. How are you gonna split the string? Yeah.
+
+That's right. What if you just made it an array? Oh, okay. You mean this? Mhmm.
+
+Yeah. Yeah. And then at the end, I can just join. Yeah. That's right.
+
+Let's try that. So let's get rid of this. Run it and done. So push. Right.
+
+And then add that join. Alright. That looks about right. Yeah. Okay.
+
+Cool. Alright. So we need a little bit of assistance. Just some I yeah. The the string number is interesting.
+
+I wonder what the difference between I don't I haven't seen that, but I'm not or it's not the way that I would do it, I guess. But, you know, up here, it would probably go, like, number to string. Okay. Yeah. But, yeah, I don't know if there's a difference between those two things.
+
+But, yeah, that is for me to find out. Cool. Yeah. So, your your pseudo code when you pseudo code, you know, you should try to make this clear, right, by, like, define zeros to add, you know, by getting, string length. Right?
+
+Something like that. Be more discreetly. Yeah. And then and then when you did this down here, you were like, add current number plus zeros to add, you know, in here, I would just, you know, I would be a little more explicit and say something to the effect of using repeat. Okay.
+
+So that'll help people. Again, the idea is, like, you could hand this off to someone of your coding level, and they could, they could code it up. I mean, it you had a you had a plan, which is great. I'm just, we're just doing a little bit of refining here. Yes.
+
+When it comes to, to the pseudo code that you're writing. And yeah. I mean, this problem is interesting and, it, you know, it, it creates a couple challenges, but, Yeah. When, when we're trying to format things and interpolate, I think, you know, we can, we can reach for an array if we need to string a bunch of strings together with a certain pattern. Yeah.
+
+But, yeah, there I don't there's a couple different strategies. It depends. But, but, yeah, that that was that's something to think about. And but, yeah, other than that, pretty good job today. Alright.
+
+Thank you. Yeah. So yeah. So, it's, the the way that I was pseudo coding because it's a good thing that you pointed it out because this it like, when I was pseudo coding, I was just thinking of me, like, following the instructions Right. That I already know what I'm gonna do and just you know?
+
+But it should be more that than just me. Right? It should be Right. To anyone that see this, the pseudo code, they should be able to implement it. Right.
+
+Because you and but, you know, you're writing for when you say you're writing for me, you're writing for when we when we write the pseudo code and we write it for us, we're writing it for us right now. Right? But we need to write it for us three weeks from now. Yes. Because we need to code because we'll come back three weeks and go, what what was I thinking?
+
+Yeah. You know? Like, what am I even talking about? So that's that's and we wanna code that way too. Right?
+
+Yes. So, so, yeah, that's that's the way that I think about it. Okay. Other than that, yeah. Again, pretty good job today.
+
+I will write up my, review and send that out, hopefully, by the end of the day. Alright. Thank you very much, Paul. Okay. You're always Do you have any questions before we break?
+
+Oh, you know what we should ask? Oh, we should talk about is, like, what is the time complexity for this? Oh, okay. Alright. Yeah.
+
+Yeah. Yes. So the time complexity, yeah. Let me just so the time complexity for this, so we're looping linearly Mhmm. From left to right, one element at a time.
+
+And I believe that's, so this is gonna be a linear time or o n. Yep. Since we're just visiting every element in the array just once on the first on the first go. Okay. And, how much space are we using here?
+
+Okay. So we are using, so so for the days that now I I'm taking a little bit more time when talking about time and space complexity because I had an interview with my mentor. Mhmm. And and I I discovered, like, a few things that Yep. Yeah.
+
+So how much is the answer is gonna grow? So I guess the answer is going to grow, in relation to the input, string and how many elements, we have there. Okay. Yeah. So it's it's it's going to be linear as well.
+
+Okay. And and where is that space happening? It's right here in line 22, with the answers. Alright. Yeah.
+
+Line 21. Okay. Great. Cool. Alright.
+
+Yeah. Okay. Do you have any more questions for me? No. No.
+
+No. No. I think it was great. So Yeah. It was great to, you know, keep this in mind.
+
+Like, when I was thinking about numbers, and adding things, I I no. It didn't come to my mind, so that's great to know. And then the feedback about the comments, that's something very good that I'm gonna be adding to my process. Okay. Excellent.
+
+Keep practicing. Practice your lead code problems. I know you've got a very high score, and that's great, under code track. But keep practicing your lead code problems and, you know, practice pseudo coding those before you solve them. And, and yeah.
+
+And then just, you know, if you really wanna test yourself, walk away for ten minutes after you pseudo code before you start actually coding, and then come back and look at it and be like, does this make sense? And, you know, and you can make a correction that way. But, that's one thing you might try. Okay. Alright.
+
+Great. Thank you very much, Paul. Alright. Take care, Antonio. See you soon.
+
+Bye.

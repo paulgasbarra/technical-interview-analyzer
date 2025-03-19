@@ -11,29 +11,20 @@ try:
     ssl._create_default_https_context = _create_unverified_https_context
 except AttributeError:
     pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
-
-# Download required NLTK data (if not already downloaded)
+# Make sure the required NLTK data is downloaded
 try:
-    nltk.data.find('sentiment/vader_lexicon')  # Check if vader_lexicon is already downloaded
+    nltk.data.find('vader_lexicon')
 except LookupError:
-    try:
-        nltk.download('vader_lexicon')
-    except ssl.SSLError as e:
-        print(f"SSL Error downloading vader_lexicon: {e}")
-        print("Please try again or manually download and place the lexicon.")
-        exit()  # Exit if the download fails
+    print("Downloading required NLTK data...")
+    nltk.download('vader_lexicon')
 
 try:
-    nltk.data.find('tokenizers/punkt')  # Check if punkt is already downloaded
+    nltk.data.find('tokenizers/punkt')
 except LookupError:
-    try:
-        nltk.download('tokenizers/punkt')
-    except ssl.SSLError as e:
-        print(f"SSL Error downloading punkt: {e}")
-        print("Please try again or manually download and place the tokenizer.")
-        exit()  # Exit if the download fails
-
+    nltk.download('punkt')
 
 def analyze_sentiment(transcript_json_file):
     """
@@ -61,29 +52,33 @@ def analyze_sentiment(transcript_json_file):
         print(f"Error: Invalid JSON format. Expected a dictionary with an 'interview' dictionary containing a 'transcript' list.")
         return None
 
-    transcript = data['interview']['transcript']  # Corrected to access the transcript inside the interview object
+    interview_data = data['interview']
+    transcript = interview_data['transcript']
 
     if not transcript:
         print("Error: No turns found in the transcript.")
-        return None  # Handle empty transcript case
+        return None
 
     candidate_utterances = []
     interviewer_utterances = []
 
+    candidate_name = interview_data.get('candidate', 'Candidate')
+    interviewer_name = interview_data.get('interviewer', 'Interviewer')
+
     for turn in transcript:
-        if not isinstance(turn, dict) or 'speaker' not in turn or 'dialogue' not in turn:  # Changed 'utterance' to 'dialogue'
+        if not isinstance(turn, dict) or 'speaker' not in turn or 'dialogue' not in turn:
             print("Warning: Skipping invalid turn format. Expected dictionary with 'speaker' and 'dialogue'.")
-            continue  # Skip invalid turns
+            continue
 
         speaker = turn['speaker']
-        utterance = turn['dialogue']  # Changed 'utterance' to 'dialogue'
+        utterance = turn['dialogue']
 
-        if speaker.lower() == 'alice johnson':  # Changed to match the actual speaker name
+        if speaker.lower() == candidate_name.lower():
             candidate_utterances.append(utterance)
-        elif speaker.lower() == 'bob smith':  # Changed to match the actual speaker name
+        elif speaker.lower() == interviewer_name.lower():
             interviewer_utterances.append(utterance)
         else:
-            print(f"Warning: Unknown speaker: {speaker}. Skipping utterance.")  # handle potential errors in data
+            print(f"Warning: Unknown speaker: {speaker}. Skipping utterance.")
 
     # Initialize sentiment analyzer
     analyzer = SentimentIntensityAnalyzer()
@@ -99,7 +94,7 @@ def analyze_sentiment(transcript_json_file):
                  Returns None if the list of utterances is empty.
         """
         if not utterances:
-            return None  # Handle the case where there are no utterances for a speaker
+            return None
 
         compound_scores = []
         positive_scores = []
@@ -142,35 +137,46 @@ def analyze_sentiment(transcript_json_file):
 
 def summarize_sentiment(sentiment_results):
     """
-    Summarizes the sentiment analysis results into human-readable descriptions.
+    Summarizes the sentiment analysis results, breaking down the descriptive elements.
 
     Args:
         sentiment_results (dict): The dictionary returned by analyze_sentiment.
 
     Returns:
-        dict: A dictionary containing sentiment summaries for the candidate and interviewer.
+        dict: A dictionary containing detailed sentiment summaries for the candidate and interviewer.
     """
 
     def interpret_sentiment(sentiment_data):
-        """Interprets the sentiment data and returns a descriptive summary."""
+        """Interprets the sentiment data and returns a dictionary of descriptive elements."""
         if sentiment_data is None:
-            return "No sentiment data available."
+            return {
+                "overall_sentiment": "No sentiment data available.",
+                "positive_percentage": None,
+                "negative_percentage": None,
+                "neutral_percentage": None,
+                "compound_score": None
+            }
 
         compound_score = sentiment_data['compound']
 
         if compound_score >= 0.05:
-            sentiment = "Generally positive."
+            overall_sentiment = "Generally positive"
         elif compound_score <= -0.05:
-            sentiment = "Generally negative."
+            overall_sentiment = "Generally negative"
         else:
-            sentiment = "Neutral."
+            overall_sentiment = "Neutral"
 
         positive_percentage = sentiment_data['positive'] * 100
         negative_percentage = sentiment_data['negative'] * 100
         neutral_percentage = sentiment_data['neutral'] * 100
 
-        summary = f"{sentiment} (Positive: {positive_percentage:.1f}%, Negative: {negative_percentage:.1f}%, Neutral: {neutral_percentage:.1f}%).  Compound Score: {compound_score:.2f}"
-        return summary
+        return {
+            "overall_sentiment": overall_sentiment,
+            "positive_percentage": positive_percentage,
+            "negative_percentage": negative_percentage,
+            "neutral_percentage": neutral_percentage,
+            "compound_score": compound_score
+        }
 
     candidate_summary = interpret_sentiment(sentiment_results['candidate'])
     interviewer_summary = interpret_sentiment(sentiment_results['interviewer'])
@@ -184,13 +190,64 @@ def summarize_sentiment(sentiment_results):
 # Example usage
 if __name__ == "__main__":
     transcript_file = "interview_transcript.json"
+    output_file = "sentiment_summary.json"  # JSON output file
+
+    try:
+        with open(transcript_file, 'r') as f:
+            data = json.load(f)
+        interview_data = data.get('interview', {}) #extract interview object
+
+        # Extract metadata
+        date = interview_data.get('date')
+        position = interview_data.get('position')
+        candidate_name = interview_data.get('candidate')
+        interviewer_name = interview_data.get('interviewer')
+        question = interview_data.get('question')
+
+    except (FileNotFoundError, json.JSONDecodeError, AttributeError) as e:
+        print(f"Error loading and extracting metadata: {e}")
+        date = None
+        position = None
+        candidate_name = None
+        interviewer_name = None
+        question = None
 
     results = analyze_sentiment(transcript_file)
 
     if results:
         sentiment_summary = summarize_sentiment(results)
-        print("Sentiment Analysis Summary:")
-        print("Candidate (Alice Johnson):", sentiment_summary['candidate'])
-        print("Interviewer (Bob Smith):", sentiment_summary['interviewer'])
+
+        # Prepare JSON output
+        output_data = {
+            "interview": {
+                "date": date,
+                "position": position,
+                "candidate": candidate_name,
+                "interviewer": interviewer_name,
+                "question": question,
+                "candidate_sentiment": {  # Renamed key
+                    "overall_sentiment": sentiment_summary['candidate']['overall_sentiment'],
+                    "positive_percentage": sentiment_summary['candidate']['positive_percentage'],
+                    "negative_percentage": sentiment_summary['candidate']['negative_percentage'],
+                    "neutral_percentage": sentiment_summary['candidate']['neutral_percentage'],
+                    "compound_score": sentiment_summary['candidate']['compound_score']
+                },
+                "interviewer_sentiment": {  # Renamed Key
+                    "overall_sentiment": sentiment_summary['interviewer']['overall_sentiment'],
+                    "positive_percentage": sentiment_summary['interviewer']['positive_percentage'],
+                    "negative_percentage": sentiment_summary['interviewer']['negative_percentage'],
+                    "neutral_percentage": sentiment_summary['interviewer']['neutral_percentage'],
+                    "compound_score": sentiment_summary['interviewer']['compound_score']
+                }
+            }
+        }
+
+        try:
+            with open(output_file, "w") as outfile:
+                json.dump(output_data, outfile, indent=4)
+            print(f"Sentiment summary written to {output_file}")
+        except IOError as e:
+            print(f"Error writing to file: {e}")
+
     else:
         print("Sentiment analysis failed. Check the error messages above.")

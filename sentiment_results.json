@@ -1,0 +1,19 @@
+{
+  "sentiment_analysis": {
+    "file": "interview_transcript.json",
+    "candidate_sentiment": {
+      "overall_sentiment": "Neutral",
+      "positive_percentage": 6.061538461538461,
+      "negative_percentage": 2.1333333333333333,
+      "neutral_percentage": 91.8051282051282,
+      "compound_score": 0.03281794871794872
+    },
+    "interviewer_sentiment": {
+      "overall_sentiment": "Generally positive",
+      "positive_percentage": 26.385,
+      "negative_percentage": 3.1,
+      "neutral_percentage": 70.515,
+      "compound_score": 0.16982
+    }
+  }
+}

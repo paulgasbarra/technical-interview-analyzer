@@ -1,0 +1,91 @@
+{
+  "interview": {
+    "date": "2024-01-26",
+    "position": "Software Engineer",
+    "candidate": "Alice Johnson",
+    "interviewer": "Bob Smith",
+    "question": "Given an array of integers, write a function to find the maximum sum of a contiguous subarray. For example, given the array [-2, 1, -3, 4, -1, 2, 1, -5, 4], the maximum sum is 6 (from the subarray [4, -1, 2, 1]).",
+    "transcript": [
+      {
+        "speaker": "Bob Smith",
+        "time": "0:00",
+        "dialogue": "Hi Alice, thanks for coming in. Let's dive into a coding problem. Given an array of integers, write a function to find the maximum sum of a contiguous subarray. For example, given the array [-2, 1, -3, 4, -1, 2, 1, -5, 4], the maximum sum is 6 (from the subarray [4, -1, 2, 1])."
+      },
+      {
+        "speaker": "Alice Johnson",
+        "time": "0:05",
+        "dialogue": "Okay, I understand the problem. So, we need to find the largest sum of a sequence of numbers that are next to each other in the array. My initial thought is that we could iterate through all possible subarrays and calculate the sum for each, keeping track of the maximum sum we've seen so far. This would involve nested loops."
+      },
+      {
+        "speaker": "Bob Smith",
+        "time": "0:10",
+        "dialogue": "That's one approach. What would be the time complexity of that solution?"
+      },
+      {
+        "speaker": "Alice Johnson",
+        "time": "0:12",
+        "dialogue": "With nested loops, it would be O(n^2) because for each starting index, we'd potentially iterate through the rest of the array to calculate the sum of all subarrays starting at that index."
+      },
+      {
+        "speaker": "Bob Smith",
+        "time": "0:15",
+        "dialogue": "Correct. Can you think of a more efficient approach?"
+      },
+      {
+        "speaker": "Alice Johnson",
+        "time": "0:18",
+        "dialogue": "Hmm... Let me think. Maybe we can use a dynamic programming approach. We can keep track of the maximum sum ending at each index. So, at each index, we either extend the previous subarray, if it increases the sum, or we start a new subarray from that index."
+      },
+      {
+        "speaker": "Bob Smith",
+        "time": "0:22",
+        "dialogue": "Okay, elaborate on that."
+      },
+      {
+        "speaker": "Alice Johnson",
+        "time": "0:24",
+        "dialogue": "So, we'd have a variable `max_so_far` to store the overall maximum sum. And we'd have another variable, `current_max`, to store the maximum sum ending at the current index. At each index `i`, we'd check if `current_max + array[i]` is greater than `array[i]`. If it is, we extend the previous subarray and update `current_max`. Otherwise, we reset `current_max` to `array[i]` and start a new subarray. We also update `max_so_far` with the maximum of `max_so_far` and `current_max` at each step."
+      },
+      {
+        "speaker": "Bob Smith",
+        "time": "0:30",
+        "dialogue": "Sounds good. Can you write the code for that?"
+      },
+      {
+        "speaker": "Alice Johnson",
+        "time": "0:32",
+        "dialogue": "# Python code\ndef max_subarray_sum(arr):\n    max_so_far = arr[0]\n    current_max = arr[0]\n    for i in range(1, len(arr)):\n        current_max = max(arr[i], current_max + arr[i])\n        max_so_far = max(max_so_far, current_max)\n    return max_so_far"
+      },
+      {
+        "speaker": "Bob Smith",
+        "time": "0:38",
+        "dialogue": "Okay, that looks mostly correct. Can you walk me through an example, say, with the array [-2, 1, -3, 4, -1, 2, 1, -5, 4]?"
+      },
+      {
+        "speaker": "Alice Johnson",
+        "time": "0:40",
+        "dialogue": "Sure. `max_so_far` and `current_max` are initialized to -2. Then:\n- i=1: `current_max` becomes `max(1, -2+1)` which is 1. `max_so_far` becomes `max(-2, 1)` which is 1.\n- i=2: `current_max` becomes `max(-3, 1-3)` which is -2. `max_so_far` becomes `max(1, -2)` which is 1.\n- i=3: `current_max` becomes `max(4, -2+4)` which is 4. `max_so_far` becomes `max(1, 4)` which is 4.\n- i=4: `current_max` becomes `max(-1, 4-1)` which is 3. `max_so_far` becomes `max(4, 3)` which is 4.\n- i=5: `current_max` becomes `max(2, 3+2)` which is 5. `max_so_far` becomes `max(4, 5)` which is 5.\n- i=6: `current_max` becomes `max(1, 5+1)` which is 6. `max_so_far` becomes `max(5, 6)` which is 6.\n- i=7: `current_max` becomes `max(-5, 6-5)` which is 1. `max_so_far` becomes `max(6, 1)` which is 6.\n- i=8: `current_max` becomes `max(4, 1+4)` which is 5. `max_so_far` becomes `max(6, 5)` which is 6.\nSo, the final result is 6."
+      },
+      {
+        "speaker": "Bob Smith",
+        "time": "0:48",
+        "dialogue": "Great. What's the time and space complexity of this solution?"
+      },
+      {
+        "speaker": "Alice Johnson",
+        "time": "0:50",
+        "dialogue": "The time complexity is O(n) because we iterate through the array once. The space complexity is O(1) because we only use a few constant extra variables."
+      },
+      {
+        "speaker": "Bob Smith",
+        "time": "0:52",
+        "dialogue": "Okay, good. One small optimization:  You don't need to explicitly handle the case where the input array is empty.  The code as written will work correctly, and if the problem constraints specify a non-empty array, then the check is redundant. Otherwise, well done.  Do you have any questions for me?"
+      },
+      {
+        "speaker": "Alice Johnson",
+        "time": "0:54",
+        "dialogue": "No, I think that's all. Thank you for your time."
+      }
+    ]
+  }
+}
